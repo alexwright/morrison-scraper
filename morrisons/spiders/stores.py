@@ -49,4 +49,10 @@ class StoreSpider(Spider):
         store["name"] = response.meta["store_name"]
         store["address"] = address
         store["phone_number"] = phone_number
+
+        open_times = sel.css("#sf_store_div")
+        if len(open_times):
+            days = open_times.css("dt::text").extract()
+            hours = open_times.css("dd::text").extract()
+            store["open_times"] = zip(days, [x.split("-") for x in hours])
         yield store

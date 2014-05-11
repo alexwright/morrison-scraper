@@ -9,6 +9,7 @@ class Store(Item):
     name = Field()
     address = Field()
     phone_number = Field()
+    open_times = Field()
 
 class Region(Item):
     url = Field()
